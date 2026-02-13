@@ -34,14 +34,7 @@ void ABaseCharacter::BeginPlay()
 
 void ABaseCharacter::MoveToLocation(FVector& TargetLocation)
 {
-	FVector StartLocation = GetActorLocation();
-	FVector EndLocation = TargetLocation;
-	
-	FVector GoalLocation = TargetLocation - StartLocation;
-	GoalLocation.Z = 0.f;
-	
-	UAIBlueprintHelperLibrary::SimpleMoveToLocation(GetController(),GoalLocation);
-	
+	UAIBlueprintHelperLibrary::SimpleMoveToLocation(GetController(),TargetLocation);
 }
 
 
