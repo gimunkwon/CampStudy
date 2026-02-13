@@ -1,4 +1,4 @@
-﻿#include "GameActor/Character/BaseCharacter.h"
+﻿#include "GameActor/Character/Player/BaseCharacter.h"
 
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Camera/CameraComponent.h"
