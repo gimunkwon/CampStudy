@@ -1,4 +1,1 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "Global/Gamemode/MiniGameMode.h"
+﻿#include "Global/Gamemode/MiniGameMode.h"
