@@ -2,7 +2,7 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "GameActor/Character/BaseCharacter.h"
+#include "GameActor/Character/Player/BaseCharacter.h"
 
 ABaseCharacterController::ABaseCharacterController()
 {

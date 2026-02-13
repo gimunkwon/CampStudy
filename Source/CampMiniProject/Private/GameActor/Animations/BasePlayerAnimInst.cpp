@@ -1,6 +1,6 @@
 ﻿#include "GameActor/Animations/BasePlayerAnimInst.h"
 
-#include "GameActor/Character/BaseCharacter.h"
+#include "GameActor/Character/Player/BaseCharacter.h"
 
 void UBasePlayerAnimInst::NativeInitializeAnimation()
 {
