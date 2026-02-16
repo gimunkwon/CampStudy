@@ -3,6 +3,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameActor/Character/Player/BaseCharacter.h"
+#include "GameActor/Object/DungeonPortal.h"
+#include "UI/HUD/MiniHUD.h"
 
 ABaseCharacterController::ABaseCharacterController()
 {
@@ -29,6 +31,7 @@ void ABaseCharacterController::SetupInputComponent()
 	{
 		EInputComp->BindAction(IA_ClickToMove, ETriggerEvent::Started, this, &ABaseCharacterController::OnInputClickToMove);
 		EInputComp->BindAction(IA_ClickToMove, ETriggerEvent::Triggered, this, &ABaseCharacterController::OnInputClickToMove);
+		EInputComp->BindAction(IA_Interactive,ETriggerEvent::Started, this, &ABaseCharacterController::OnInputInteractive);
 	}
 }
 
@@ -43,5 +46,16 @@ void ABaseCharacterController::OnInputClickToMove()
 			GPlayer->MoveToLocation(Hit.Location);
 		}
 		
+	}
+}
+
+void ABaseCharacterController::OnInputInteractive()
+{
+	if (ABaseCharacter* GPlayer = Cast<ABaseCharacter>(GetPawn()))
+	{
+		if (ADungeonPortal* Portal = GPlayer->GetInteractiveActor())
+		{
+			Portal->OpenDungeonEnterWidget();
+		}
 	}
 }

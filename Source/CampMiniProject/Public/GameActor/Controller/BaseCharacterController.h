@@ -4,6 +4,9 @@
 #include "GameFramework/PlayerController.h"
 #include "BaseCharacterController.generated.h"
 
+DECLARE_MULTICAST_DELEGATE(FInteractiveDelegate);
+
+
 class UInputMappingContext;
 class UInputAction;
 
@@ -26,8 +29,12 @@ protected:
 	UPROPERTY(EditAnywhere,Category="Input| InputAction")
 	TObjectPtr<UInputAction> IA_ClickToMove;
 	
+	UPROPERTY(EditAnywhere,Category="Input| InputAction")
+	TObjectPtr<UInputAction> IA_Interactive;
+	
 	/*-------Functions-------*/
 	void OnInputClickToMove();
+	void OnInputInteractive();
 	
 #pragma endregion 
 };
