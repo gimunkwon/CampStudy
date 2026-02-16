@@ -11,7 +11,7 @@ public class CampMiniProject : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] { 
 			"Core", "CoreUObject"
 			, "Engine", "InputCore", "EnhancedInput"
-			, "AIModule" 
+			, "AIModule","UMG","Niagara"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
