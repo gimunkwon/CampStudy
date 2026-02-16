@@ -33,6 +33,10 @@ protected:
 	TObjectPtr<USpringArmComponent> SpringArmComp;
 #pragma endregion
 	
+#pragma region Weapon
+	UPROPERTY(EditAnywhere,Category="Mesh|Weapon")
+	TObjectPtr<UStaticMeshComponent> WeaponMesh;
+#pragma endregion 
 private:
 #pragma region Actor
 	UPROPERTY()

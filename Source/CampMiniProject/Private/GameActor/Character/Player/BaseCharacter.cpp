@@ -23,6 +23,15 @@ ABaseCharacter::ABaseCharacter()
 	TopDownCamera->SetupAttachment(SpringArmComp);
 	TopDownCamera->bUsePawnControlRotation = false;
 #pragma endregion 
+	
+#pragma region Weapon
+	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMesh"));
+	WeaponMesh->SetupAttachment(GetMesh(),TEXT("WeaponSocket"));
+	
+	WeaponMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	WeaponMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
+	WeaponMesh->SetCanEverAffectNavigation(false);
+#pragma endregion 
 }
 
 void ABaseCharacter::BeginPlay()
