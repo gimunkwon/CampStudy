@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
 
+class ADungeonPortal;
 class USpringArmComponent;
 class UCameraComponent;
 
@@ -14,6 +15,9 @@ class CAMPMINIPROJECT_API ABaseCharacter : public ACharacter
 
 public:
 	ABaseCharacter();
+
+	FORCEINLINE void SetInteractiveActor(ADungeonPortal* InInteractiveActor) {Portal = InInteractiveActor;}
+	FORCEINLINE ADungeonPortal* GetInteractiveActor() {return Portal;}
 	
 #pragma region Movement
 	void MoveToLocation(FVector& TargetLocation);
@@ -29,4 +33,9 @@ protected:
 	TObjectPtr<USpringArmComponent> SpringArmComp;
 #pragma endregion
 	
+private:
+#pragma region Actor
+	UPROPERTY()
+	TObjectPtr<ADungeonPortal> Portal;
+#pragma endregion
 };

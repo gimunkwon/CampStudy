@@ -14,7 +14,7 @@ ABaseCharacter::ABaseCharacter()
 	SpringArmComp->TargetArmLength = 600.f;
 	SpringArmComp->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f));
 	SpringArmComp->bUsePawnControlRotation = false;
-	SpringArmComp->bDoCollisionTest = false;
+	SpringArmComp->bDoCollisionTest = true;
 	SpringArmComp->bInheritPitch = false;
 	SpringArmComp->bInheritRoll = false;
 	SpringArmComp->bInheritYaw = false;
@@ -36,6 +36,7 @@ void ABaseCharacter::MoveToLocation(FVector& TargetLocation)
 {
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(GetController(),TargetLocation);
 }
+
 
 
 
