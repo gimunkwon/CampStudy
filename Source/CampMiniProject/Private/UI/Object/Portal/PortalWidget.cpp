@@ -14,7 +14,7 @@ void UPortalWidget::OnEnterButton()
 			return;
 		}
 		
-		UGameplayStatics::OpenLevel(this, KamenRaidLevelName);
+		UGameplayStatics::OpenLevel(GetWorld(), KamenRaidLevelName);
 		RemoveFromParent();
 	}
 }
