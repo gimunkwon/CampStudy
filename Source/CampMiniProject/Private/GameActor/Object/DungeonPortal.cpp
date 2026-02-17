@@ -44,6 +44,17 @@ void ADungeonPortal::BeginPlay()
 void ADungeonPortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (PortalToolTipWidgetClass)
+	{
+		PortalToolTipWidget = CreateWidget<UUserWidget>(GetWorld(),PortalToolTipWidgetClass);
+		if (PortalToolTipWidget)
+		{
+			PortalToolTipWidget->AddToViewport();
+		}
+	}
+	
+	
+	
 	UE_LOG(LogTemp,Warning,TEXT("던전 입구에 접근했습니다 E를 눌러 상호작용 하세요"));
 	
 	if (ABaseCharacter* BasePlayer = Cast<ABaseCharacter>(OtherActor))
@@ -58,6 +69,10 @@ void ADungeonPortal::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor*
 void ADungeonPortal::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	if (PortalToolTipWidget)
+	{
+		PortalToolTipWidget->RemoveFromParent();
+	}
 	UE_LOG(LogTemp,Warning,TEXT("던전 입구근처에 플레이어 없음"));
 	
 	if (PortalWidget)

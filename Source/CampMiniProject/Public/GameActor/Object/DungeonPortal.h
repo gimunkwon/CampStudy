@@ -51,9 +51,13 @@ protected:
 #pragma region Widget
 	UPROPERTY(EditAnywhere,Category="Widget")
 	TSubclassOf<UUserWidget> PortalWidgetClass;
-	
 	UPROPERTY()
 	TObjectPtr<UPortalWidget> PortalWidget;
+	
+	UPROPERTY(EditAnywhere,Category="Widget|ToolTip")
+	TSubclassOf<UUserWidget> PortalToolTipWidgetClass;
+	UPROPERTY()
+	TObjectPtr<UUserWidget> PortalToolTipWidget;
 #pragma endregion 
 
 private:
