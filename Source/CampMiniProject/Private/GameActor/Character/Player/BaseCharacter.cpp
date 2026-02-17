@@ -2,6 +2,7 @@
 
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Camera/CameraComponent.h"
+#include "GameActor/Animations/BasePlayerAnimInst.h"
 #include "GameFramework/SpringArmComponent.h"
 
 ABaseCharacter::ABaseCharacter()
@@ -11,7 +12,7 @@ ABaseCharacter::ABaseCharacter()
 #pragma region Camera,SpringArm
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
 	SpringArmComp->SetupAttachment(RootComponent);
-	SpringArmComp->TargetArmLength = 600.f;
+	SpringArmComp->TargetArmLength = 900.f;
 	SpringArmComp->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f));
 	SpringArmComp->bUsePawnControlRotation = false;
 	SpringArmComp->bDoCollisionTest = true;
@@ -40,6 +41,34 @@ void ABaseCharacter::BeginPlay()
 	
 }
 
+
+void ABaseCharacter::PlayClash()
+{
+	DefaultTarArmLength = SpringArmComp->TargetArmLength;
+	DefaultTargetArmRotation = SpringArmComp->GetRelativeRotation();
+	
+	SpringArmComp->TargetArmLength = 400.f;
+	SpringArmComp->SetRelativeRotation(FRotator(0.f,-30.f,0.f));
+	
+	if (UAnimInstance* BaseAnimInst = Cast<UAnimInstance>(GetMesh()->GetAnimInstance()))
+	{
+		if (ClashAnimMontage)
+		{
+			BaseAnimInst->Montage_Play(ClashAnimMontage);
+		}
+	}
+}
+
+void ABaseCharacter::EndClash()
+{
+	if (UAnimInstance* AnimInst = GetMesh()->GetAnimInstance())
+	{
+		AnimInst->Montage_Stop(0.2f, ClashAnimMontage);
+	}
+	
+	SpringArmComp->SetRelativeRotation(DefaultTargetArmRotation);
+	SpringArmComp->TargetArmLength = DefaultTarArmLength;
+}
 
 void ABaseCharacter::MoveToLocation(FVector& TargetLocation)
 {

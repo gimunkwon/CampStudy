@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
 
+class ABaseEnemey;
 class ADungeonPortal;
 class USpringArmComponent;
 class UCameraComponent;
@@ -18,6 +19,12 @@ public:
 
 	FORCEINLINE void SetInteractiveActor(ADungeonPortal* InInteractiveActor) {Portal = InInteractiveActor;}
 	FORCEINLINE ADungeonPortal* GetInteractiveActor() {return Portal;}
+	
+	FORCEINLINE void SetClashActor(ABaseEnemey* InClashActor) {ClashActor = InClashActor;}
+	FORCEINLINE ABaseEnemey* GetClashActor() {return ClashActor;}
+	
+	void PlayClash();
+	void EndClash();
 	
 #pragma region Movement
 	void MoveToLocation(FVector& TargetLocation);
@@ -36,10 +43,20 @@ protected:
 #pragma region Weapon
 	UPROPERTY(EditAnywhere,Category="Mesh|Weapon")
 	TObjectPtr<UStaticMeshComponent> WeaponMesh;
+#pragma endregion
+	
+#pragma region Animations
+	UPROPERTY(EditAnywhere,Category="Animations|AnimMontage")
+	TObjectPtr<UAnimMontage> ClashAnimMontage;
 #pragma endregion 
 private:
 #pragma region Actor
 	UPROPERTY()
 	TObjectPtr<ADungeonPortal> Portal;
+	UPROPERTY()
+	TObjectPtr<ABaseEnemey> ClashActor;
 #pragma endregion
+	
+	float DefaultTarArmLength;
+	FRotator DefaultTargetArmRotation;
 };
