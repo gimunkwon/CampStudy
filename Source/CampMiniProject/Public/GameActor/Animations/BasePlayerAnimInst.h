@@ -11,7 +11,8 @@ UCLASS()
 class CAMPMINIPROJECT_API UBasePlayerAnimInst : public UAnimInstance
 {
 	GENERATED_BODY()
-	
+public:
+	void AnimNotify_ResumeClash();
 protected:
 	virtual void NativeInitializeAnimation() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
@@ -19,7 +20,10 @@ protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Movement|Speed")
 	float GroundSpeed;
 	
+	UFUNCTION(BlueprintCallable)
+	void AnimNotify_PauseClash();
+
 private:
 	UPROPERTY()
-	TObjectPtr<ABaseCharacter> OwnerCharacter;
+	TObjectPtr<ACharacter> OwnerCharacter;
 };
